@@ -1,1 +1,5 @@
 /* This file is for your main application css. */
+@tailwind preflight;
+@tailwind utilities;
+@tailwind components;
+
