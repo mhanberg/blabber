@@ -18,7 +18,9 @@ defmodule Blabber.Thoughts do
 
   """
   def list_thoughts do
-    Repo.all(Thought)
+    Thought
+    |> order_by(desc: :inserted_at)
+    |> Repo.all()
   end
 
   @doc """
