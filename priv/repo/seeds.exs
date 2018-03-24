@@ -9,3 +9,8 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+for name <- ["alice", "bob", "carol", "dave"],
+    message <- ["Hi, I'm #{name}!", "Chipotle is SO good", "Does anyone else breathe?"] do
+  Blabber.Thoughts.create_thought(%{author: name, body: message})
+end
