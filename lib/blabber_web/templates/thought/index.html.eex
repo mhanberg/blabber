@@ -1,10 +1,31 @@
-<%= for thought <- @thoughts do %>
-  <div class="bg-white shadow-md border-b">
-    <div class="p-6">
-      <h5 class="text-grey-dark">@<%= thought.author %></h5>
-      <h3 class="text-black"><%= thought.body %></h3>
-      <p class="text-grey"><%= thought.inserted_at %></p>
-    </div>
+<div class="shadow-md">
+  <div class="bg-blue-lighter p-6">
+    <h2 class="text-blue-darker">Blabber</h2>
   </div>
-<% end %>
+  <div class="mb-6 p-6 bg-white">
+    <input class="block shadow appearance-none border rounded py-2 px-3 mb-4 text-grey-darker"
+           id="username"
+           type="text"
+           placeholder="Username">
+    <textarea class="block shadow appearance-none border rounded w-full py-2 px-3 mb-4 text-grey-darker"
+              id="thought"
+              placeholder="Something very important..."></textarea>
+    <button class="block bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
+            type="button"
+            id="share">
+      Share!
+    </button>
+  </div>
+</div>
+<div id="thoughtList">
+  <%= for thought <- @thoughts do %>
+    <div class="bg-white shadow-md border-b">
+      <div class="p-6">
+        <h5 class="text-grey-dark">@<%= thought.author %></h5>
+        <h3 class="text-black"><%= thought.body %></h3>
+        <p class="text-grey"><%= thought.inserted_at %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
 
