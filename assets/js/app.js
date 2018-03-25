@@ -1,21 +1,28 @@
-// Brunch automatically concatenates all files in your
-// watched paths. Those paths can be configured at
-// config.paths.watched in "brunch-config.js".
-//
-// However, those files will only be executed if
-// explicitly imported. The only exception are files
-// in vendor, which are never wrapped in imports and
-// therefore are always executed.
-
-// Import dependencies
-//
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
 
-// Import local files
-//
-// Local files can be imported directly using relative
-// paths "./socket" or full ones "web/static/js/socket".
+const prependBlab = function({author, body, date}) {
+  let authorElement = document.createElement("h5")
+  authorElement.append(document.createTextNode(`@${author}`));
+  authorElement.classList.add("text-grey-dark");
 
-// import socket from "./socket"
+  let bodyElement = document.createElement("h3")
+  bodyElement.append(document.createTextNode(body));
+  bodyElement.classList.add("text-black");
+
+  let dateElement = document.createElement("p")
+  dateElement.append(document.createTextNode(date));
+  dateElement.classList.add("text-grey");
+
+  let inner = document.createElement("div")
+  inner.append(authorElement, bodyElement, dateElement);
+  inner.classList.add("p-6");
+
+  let thought = document.createElement("div")
+  thought.append(inner);
+  thought.classList.add("bg-white", "shadow-md", "border-b");
+
+  document.getElementById("thoughtList").prepend(thought);
+}
+
