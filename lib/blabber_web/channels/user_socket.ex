@@ -2,7 +2,7 @@ defmodule BlabberWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", BlabberWeb.RoomChannel
+  channel "thought:*", BlabberWeb.ThoughtChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

@@ -26,3 +26,33 @@ const prependBlab = function({author, body, date}) {
   document.getElementById("thoughtList").prepend(thought);
 }
 
+import {Socket} from "phoenix";
+
+let socket = new Socket("/socket");
+
+socket.connect();
+
+let channel = socket.channel("thought:public");
+
+channel.join()
+  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("error", resp => { console.log("Unable to join", resp) });
+
+channel.on("new_thought", payload => {
+  prependBlab({author: payload.author, body: payload.body, date: payload.inserted_at});
+});
+
+let usernameInput = document.getElementById("username");
+let thoughtInput = document.getElementById("thought");
+let shareButton = document.getElementById("share");
+
+shareButton.addEventListener("click", event => {
+  let author = usernameInput.value;
+  let body = thoughtInput.value;
+
+  channel.push("new_thought", {author, body});
+
+  usernameInput.value = "";
+  thoughtInput.value = "";
+});
+
