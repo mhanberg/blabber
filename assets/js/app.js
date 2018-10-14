@@ -12,7 +12,7 @@ channel.join()
   .receive("error", resp => { console.log("Unable to join", resp) });
 
 channel.on("new_thought", payload => {
-  prependBlab({author: payload.author, body: payload.body, date: payload.inserted_at});
+  prependBlab(payload);
 });
 
 let usernameInput = document.getElementById("username");

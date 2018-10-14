@@ -19,13 +19,7 @@
 </div>
 <div id="thoughtList">
   <%= for thought <- @thoughts do %>
-    <div class="bg-white shadow-md border-b">
-      <div class="p-6">
-        <h5 class="text-grey-dark">@<%= thought.author %></h5>
-        <h3 class="text-black"><%= thought.body %></h3>
-        <p class="text-grey"><%= thought.inserted_at %></p>
-      </div>
-    </div>
+    <%= render "thought.html", thought: thought %>
   <% end %>
 </div>
 

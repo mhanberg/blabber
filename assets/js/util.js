@@ -1,25 +1,8 @@
-const prependBlab = function({author, body, date}) {
-  let authorElement = document.createElement("h5")
-  authorElement.append(document.createTextNode(`@${author}`));
-  authorElement.classList.add("text-grey-dark");
+const prependBlab = function({template: thought}) {
+  const thoughtNode = document.createElement("div");
 
-  let bodyElement = document.createElement("h3")
-  bodyElement.append(document.createTextNode(body));
-  bodyElement.classList.add("text-black");
-
-  let dateElement = document.createElement("p")
-  dateElement.append(document.createTextNode(date));
-  dateElement.classList.add("text-grey");
-
-  let inner = document.createElement("div")
-  inner.append(authorElement, bodyElement, dateElement);
-  inner.classList.add("p-6");
-
-  let thought = document.createElement("div")
-  thought.append(inner);
-  thought.classList.add("bg-white", "shadow-md", "border-b");
-
-  document.getElementById("thoughtList").prepend(thought);
+  document.getElementById("thoughtList").prepend(thoughtNode);
+  thoughtNode.outerHTML = thought;
 };
 
 const isFormSafe = (inputs, onSuccess) => {
@@ -41,8 +24,10 @@ const isFormSafe = (inputs, onSuccess) => {
 
   onSuccess();
 
-  username.value = "" && username.classList.remove("border-red");
-  thought.value = "" && thought.classList.remove("border-red");
+  username.value = "";
+  username.classList.remove("border-red");
+  thought.value = "";
+  thought.classList.remove("border-red");
 };
 
 export {
